@@ -4,6 +4,11 @@ public class Order {
 	private String id;
 	private boolean notDelivered;
 
+	public Order(String id, boolean notDelivered) {
+		this.id = id;
+		this.notDelivered = notDelivered;
+	}
+
 	public String getId() {
 		return id;
 	}
