@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import com.github.flaviodev.model.Order;
 
-public class AppTest {
+public class CleanLambdasTest {
 
-	private Logger logger = LoggerFactory.getLogger(AppTest.class);
+	private Logger logger = LoggerFactory.getLogger(CleanLambdasTest.class);
 
 	@Test
 	public void shouldntHasNotDeliveredOrders() {
