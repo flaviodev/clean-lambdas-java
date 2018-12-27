@@ -1,15 +1,25 @@
 package com.github.flaviodev.model;
 
-import lombok.AllArgsConstructor;
+import java.math.BigDecimal;
+import java.util.Optional;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode
-public @Getter @Setter class Costumer {
-	private String id;
-	private Profile profile;
+public class Costumer {
+
+	private @Getter @Setter Profile profile;
+
+	public Optional<Profile> getProfileOpt() {
+		return Optional.ofNullable(profile);
+	}
+
+	public BigDecimal getDiscount() {
+		return getProfileOpt()
+				.flatMap(Profile::getGoldCardOpt)
+				.map(GoldCard::getDiscount)
+				.orElse(BigDecimal.ZERO);
+	}
 }
