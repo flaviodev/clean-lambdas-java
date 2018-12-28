@@ -17,8 +17,9 @@ public class Costumer {
 	}
 
 	public BigDecimal getDiscount() {
+			
 		return getProfileOpt()
-				.flatMap(Profile::getGoldCardOpt)
+				.flatMap(Profile::getGoldCardOpt) // return Optional<GoldCard> instead Optional<Optional<GoldCard>>
 				.map(GoldCard::getDiscount)
 				.orElse(BigDecimal.ZERO);
 	}
