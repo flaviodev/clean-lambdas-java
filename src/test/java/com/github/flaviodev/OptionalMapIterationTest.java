@@ -75,7 +75,7 @@ public class OptionalMapIterationTest {
 		order.setItems(items);
 		BigDecimal totalValue = order.getTotalValue();
 
-		logger.info("shouldTotalValueTenWhenHasOneItemWithPrice -> expected: 0 and was: {}", totalValue);
+		logger.info("shouldTotalValueTenWhenHasOneItemWithPrice -> expected: 10 and was: {}", totalValue);
 		assertEquals(BigDecimal.TEN, totalValue);
 	}
 	
@@ -106,5 +106,75 @@ public class OptionalMapIterationTest {
 
 		logger.info("shouldTotalValueOneHundredOneWhenHasTwoItems -> expected: 101 and was: {}", totalValue);
 		assertEquals(new BigDecimal("101"), totalValue);
+	}
+
+	@Test
+	public void shouldTotalAmountZeroWhenItemsIsNull() {
+		
+		Order order = new Order();
+		BigDecimal totalAmount = order.getTotalItemsAmount();
+
+		logger.info("shouldTotalAmountZeroWhenItemsIsNull -> expected: 0 and was: {}", totalAmount);
+		assertEquals(BigDecimal.ZERO, totalAmount);
+	}
+	
+	@Test
+	public void shouldTotalAmountZeroWhenHasItemsEmpty() {
+
+		List<OrderItem> items = new ArrayList<>();
+		
+		Order order = new Order();
+		order.setItems(items);
+		BigDecimal totalAmount = order.getTotalItemsAmount();
+
+		logger.info("shouldTotalAmountZeroWhenHasItemsEmpty -> expected: 0 and was: {}", totalAmount);
+		assertEquals(BigDecimal.ZERO, totalAmount);
+	}
+	
+	@Test
+	public void shouldTotalAmountTenWhenHasOneItem() {
+
+		Product product1 = new Product();
+		
+		OrderItem orderItem1 = new OrderItem();
+		orderItem1.setProduct(product1);
+		orderItem1.setAmount(BigDecimal.TEN);
+				
+		List<OrderItem> items = new ArrayList<>();
+		items.add(orderItem1);
+		
+		Order order = new Order();
+		order.setItems(items);
+		BigDecimal totalAmount = order.getTotalItemsAmount();
+
+		logger.info("shouldTotalAmountTenWhenHasOneItem -> expected: 10 and was: {}", totalAmount);
+		assertEquals(new BigDecimal("10"), totalAmount);
+	}
+	
+	@Test
+	public void shouldTotalAmountElevenWhenHasTwoItems() {
+
+		Product product1 = new Product();
+		
+		OrderItem orderItem1 = new OrderItem();
+		orderItem1.setProduct(product1);
+		orderItem1.setAmount(BigDecimal.TEN);
+		
+		Product product2 = new Product();
+		
+		OrderItem orderItem2 = new OrderItem();
+		orderItem2.setProduct(product2);
+		orderItem2.setAmount(BigDecimal.ONE);
+		
+		List<OrderItem> items = new ArrayList<>();
+		items.add(orderItem1);
+		items.add(orderItem2);
+		
+		Order order = new Order();
+		order.setItems(items);
+		BigDecimal totalAmount = order.getTotalItemsAmount();
+
+		logger.info("shouldTotalAmountElevenWhenHasTwoItems -> expected: 11 and was: {}", totalAmount);
+		assertEquals(new BigDecimal("11"), totalAmount);
 	}
 }
