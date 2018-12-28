@@ -19,28 +19,28 @@ public class OptionalMapIterationTest {
 	private Logger logger = LoggerFactory.getLogger(OptionalMapIterationTest.class);
 
 	@Test
-	public void shouldTotalAmountZeroWhenItemsIsNull() {
+	public void shouldTotalValueZeroWhenItemsIsNull() {
 
 		Order order = new Order();
-		BigDecimal totalAmount = order.getTotalValue();
+		BigDecimal totalValue = order.getTotalValue();
 
-		logger.info("shouldTotalAmountZeroWhenItemsIsNull -> expected: 0 and was: {}", totalAmount);
-		assertEquals(BigDecimal.ZERO, totalAmount);
+		logger.info("shouldTotalValueZeroWhenItemsIsNull -> expected: 0 and was: {}", totalValue);
+		assertEquals(BigDecimal.ZERO, totalValue);
 	}
 
 	@Test
-	public void shouldTotalAmountZeroWhenItemsIsEmpty() {
+	public void shouldTotalValueZeroWhenItemsIsEmpty() {
 
 		Order order = new Order();
 		order.setItems(new ArrayList<>());
-		BigDecimal totalAmount = order.getTotalValue();
+		BigDecimal totalValue = order.getTotalValue();
 
-		logger.info("shouldTotalAmountZeroWhenItemsIsEmpty -> expected: 0 and was: {}", totalAmount);
-		assertEquals(BigDecimal.ZERO, totalAmount);
+		logger.info("shouldTotalValueZeroWhenItemsIsEmpty -> expected: 0 and was: {}", totalValue);
+		assertEquals(BigDecimal.ZERO, totalValue);
 	}
 
 	@Test
-	public void shouldTotalAmountZeroWhenHasOneItemWithoutPrice() {
+	public void shouldTotalValueZeroWhenHasOneItemWithoutPrice() {
 
 		Product product = new Product();
 		
@@ -52,14 +52,14 @@ public class OptionalMapIterationTest {
 
 		Order order = new Order();
 		order.setItems(items);
-		BigDecimal totalAmount = order.getTotalValue();
+		BigDecimal totalValue = order.getTotalValue();
 
-		logger.info("shouldTotalAmountZeroWhenHasOneItemWithoutPrice -> expected: 0 and was: {}", totalAmount);
-		assertEquals(BigDecimal.ZERO, totalAmount);
+		logger.info("shouldTotalValueZeroWhenHasOneItemWithoutPrice -> expected: 0 and was: {}", totalValue);
+		assertEquals(BigDecimal.ZERO, totalValue);
 	}
 
 	@Test
-	public void shouldTotalAmountTenWhenHasOneItemWithPrice() {
+	public void shouldTotalValueTenWhenHasOneItemWithPrice() {
 
 		Product product = new Product();
 		product.setPrice(BigDecimal.TEN);
@@ -73,14 +73,14 @@ public class OptionalMapIterationTest {
 
 		Order order = new Order();
 		order.setItems(items);
-		BigDecimal totalAmount = order.getTotalValue();
+		BigDecimal totalValue = order.getTotalValue();
 
-		logger.info("shouldTotalAmountTenWhenHasOneItemWithPrice -> expected: 0 and was: {}", totalAmount);
-		assertEquals(BigDecimal.TEN, totalAmount);
+		logger.info("shouldTotalValueTenWhenHasOneItemWithPrice -> expected: 0 and was: {}", totalValue);
+		assertEquals(BigDecimal.TEN, totalValue);
 	}
 	
 	@Test
-	public void shouldTotalAmountOneHundredOneWhenHasTwoItems() {
+	public void shouldTotalValueOneHundredOneWhenHasTwoItems() {
 
 		Product product1 = new Product();
 		product1.setPrice(BigDecimal.TEN);
@@ -102,9 +102,9 @@ public class OptionalMapIterationTest {
 		
 		Order order = new Order();
 		order.setItems(items);
-		BigDecimal totalAmount = order.getTotalValue();
+		BigDecimal totalValue = order.getTotalValue();
 
-		logger.info("shouldTotalAmountOneHundredOneWhenHasTwoItems -> expected: 101 and was: {}", totalAmount);
-		assertEquals(new BigDecimal("101"), totalAmount);
+		logger.info("shouldTotalValueOneHundredOneWhenHasTwoItems -> expected: 101 and was: {}", totalValue);
+		assertEquals(new BigDecimal("101"), totalValue);
 	}
 }
