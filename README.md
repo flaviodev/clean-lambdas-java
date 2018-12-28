@@ -11,3 +11,22 @@ In the words of Author:
  boolean hasNotDeliveredOrders = orders.stream().anyMatch(order -> order.isNotDelivered());
 ```
 
+## Optional Vs NPE
+
+```java
+ // Eminent NPE 
+ BigDecimal discount = costumer.getProfile().getGoldCard().getDiscount();
+	
+ // Bad solution
+ BigDecimal discount = BigDecimal.ZERO;
+ if(costumer.getProfile() != null 
+       && costumer.getProfile().getGoldCard()!= null
+       && costumer.getProfile().getGoldCard().getDiscount() != null) 
+    discount = costumer.getProfile().getGoldCard().getDiscount();
+ 
+ // Optional
+ BigDecimal discount = costumer.getProfileOpt()
+				.flatMap(Profile::getGoldCardOpt)
+				.map(GoldCard::getDiscount)
+				.orElse(BigDecimal.ZERO);
+```
